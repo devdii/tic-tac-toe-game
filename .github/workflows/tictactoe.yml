@@ -35,10 +35,14 @@ jobs:
             python tictactoe.py reset
           fi
           
+          # Update README with timestamp for cache busting
+          TIMESTAMP=$(date +%s)
+          sed -i "s/tic_tac_toe.svg?t=[0-9]*/tic_tac_toe.svg?t=$TIMESTAMP/" README.md
+          
           # Fast commit and push
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add tic_tac_toe.svg tictactoe.json
+          git add tic_tac_toe.svg tictactoe.json README.md
           git commit -m "🎮 Update game state" --quiet
           git push --quiet
         fi
