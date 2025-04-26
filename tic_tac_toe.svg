@@ -1,0 +1,11 @@
+<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+        <rect width="300" height="300" fill="white" stroke="black" stroke-width="2"/>
+        <!-- Vertical lines -->
+        <line x1="100" y1="0" x2="100" y2="300" stroke="black" stroke-width="2"/>
+        <line x1="200" y1="0" x2="200" y2="300" stroke="black" stroke-width="2"/>
+        <!-- Horizontal lines -->
+        <line x1="0" y1="100" x2="300" y2="100" stroke="black" stroke-width="2"/>
+        <line x1="0" y1="200" x2="300" y2="200" stroke="black" stroke-width="2"/>
+    
+        <text x="150" y="280" font-family="Arial" font-size="14" text-anchor="middle">Current Player: X</text>
+        </svg>
