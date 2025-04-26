@@ -24,45 +24,39 @@ def save_game(state):
     generate_svg(state)
 
 def generate_svg(state):
-    svg = '''<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
-        <rect width="300" height="300" fill="white" stroke="black" stroke-width="2"/>
-        <!-- Vertical lines -->
-        <line x1="100" y1="0" x2="100" y2="300" stroke="black" stroke-width="2"/>
-        <line x1="200" y1="0" x2="200" y2="300" stroke="black" stroke-width="2"/>
-        <!-- Horizontal lines -->
-        <line x1="0" y1="100" x2="300" y2="100" stroke="black" stroke-width="2"/>
-        <line x1="0" y1="200" x2="300" y2="200" stroke="black" stroke-width="2"/>
-    '''
+    # Pre-calculate positions for better performance
+    positions = [(i % 3 * 100 + 50, i // 3 * 100 + 50) for i in range(9)]
     
-    # Add X's and O's
-    for i in range(9):
-        x = (i % 3) * 100 + 50
-        y = (i // 3) * 100 + 50
+    # Base SVG template
+    svg = ['<svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">',
+           '<rect width="300" height="300" fill="white" stroke="black" stroke-width="2"/>',
+           '<line x1="100" y1="0" x2="100" y2="300" stroke="black" stroke-width="2"/>',
+           '<line x1="200" y1="0" x2="200" y2="300" stroke="black" stroke-width="2"/>',
+           '<line x1="0" y1="100" x2="300" y2="100" stroke="black" stroke-width="2"/>',
+           '<line x1="0" y1="200" x2="300" y2="200" stroke="black" stroke-width="2"/>']
+    
+    # Add X's and O's efficiently
+    for i, (x, y) in enumerate(positions):
         if state['board'][i] == 'X':
-            svg += f'''
-            <line x1="{x-30}" y1="{y-30}" x2="{x+30}" y2="{y+30}" stroke="red" stroke-width="4"/>
-            <line x1="{x+30}" y1="{y-30}" x2="{x-30}" y2="{y+30}" stroke="red" stroke-width="4"/>
-            '''
+            svg.extend([
+                f'<line x1="{x-30}" y1="{y-30}" x2="{x+30}" y2="{y+30}" stroke="red" stroke-width="4"/>',
+                f'<line x1="{x+30}" y1="{y-30}" x2="{x-30}" y2="{y+30}" stroke="red" stroke-width="4"/>'
+            ])
         elif state['board'][i] == 'O':
-            svg += f'''
-            <circle cx="{x}" cy="{y}" r="30" stroke="blue" stroke-width="4" fill="none"/>
-            '''
+            svg.append(f'<circle cx="{x}" cy="{y}" r="30" stroke="blue" stroke-width="4" fill="none"/>')
     
     # Add game status
     if state['game_over']:
         status = "Game Over - " + (f"Winner: {state['winner']}" if state['winner'] else "It's a tie!")
-        svg += f'''
-        <text x="150" y="280" font-family="Arial" font-size="14" text-anchor="middle">{status}</text>
-        '''
     else:
-        svg += f'''
-        <text x="150" y="280" font-family="Arial" font-size="14" text-anchor="middle">Current Player: {state['current_player']}</text>
-        '''
+        status = f"Current Player: {state['current_player']}"
     
-    svg += '</svg>'
+    svg.append(f'<text x="150" y="280" font-family="Arial" font-size="14" text-anchor="middle">{status}</text>')
+    svg.append('</svg>')
     
+    # Single write operation
     with open('tic_tac_toe.svg', 'w') as f:
-        f.write(svg)
+        f.write('\n'.join(svg))
 
 def check_winner(board):
     # Check rows
@@ -102,38 +96,34 @@ def process_move(position):
     
     # Human move
     if state['board'][position] == ' ':
-        state['board'][position] = state['current_player']
+        # Process human move
+        state['board'][position] = 'X'
         
-        # Check for winner after human move
+        # Quick check for human win or full board
         winner = check_winner(state['board'])
-        if winner:
+        if winner or is_board_full(state['board']):
             state['game_over'] = True
             state['winner'] = winner
-        elif is_board_full(state['board']):
-            state['game_over'] = True
-        else:
-            # Switch player to O (computer)
-            state['current_player'] = 'O'
+            state['current_player'] = 'X'
             save_game(state)
+            return
+        
+        # Immediate computer move
+        computer_pos = computer_move(state)
+        if computer_pos is not None:
+            state['board'][computer_pos] = 'O'
             
-            # Computer move
-            if not state['game_over']:
-                computer_pos = computer_move(state)
-                if computer_pos is not None:
-                    state['board'][computer_pos] = 'O'
-                    
-                    # Check for winner after computer move
-                    winner = check_winner(state['board'])
-                    if winner:
-                        state['game_over'] = True
-                        state['winner'] = winner
-                    elif is_board_full(state['board']):
-                        state['game_over'] = True
-                
-                # Switch back to X (human)
-                state['current_player'] = 'X'
-    
-    save_game(state)
+            # Check game end conditions
+            winner = check_winner(state['board'])
+            if winner or is_board_full(state['board']):
+                state['game_over'] = True
+                state['winner'] = winner
+        
+        # Always keep X as current player for consistency
+        state['current_player'] = 'X'
+        
+        # Single save operation at the end
+        save_game(state)
 
 def reset_game():
     initial_state = initialize_game()
