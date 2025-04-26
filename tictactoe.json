@@ -1,1 +1,1 @@
-{"board": [" ", " ", "X", " ", "O", " ", " ", " ", " "], "current_player": "X", "game_over": false, "winner": null, "difficulty": "hard", "moves_history": [2, 4], "winning_line": null}
+{"board": [" ", " ", "X", " ", "O", "O", " ", " ", "X"], "current_player": "X", "game_over": false, "winner": null, "difficulty": "hard", "moves_history": [2, 4, 8, 5], "winning_line": null}
