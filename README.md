@@ -1,14 +1,20 @@
 # 🎮 Tic-Tac-Toe Game
 
-Play Tic-Tac-Toe against GitHub! Current board:
+Play Tic-Tac-Toe against GitHub's AI! Current board:
 
 <!-- game starts here -->
 <p align="center">
-  <img src="https://github.com/devdii/tic-tac-toe-game/raw/main/tic_tac_toe.svg?t=1745689345TIMESTAMP" alt="Tic-Tac-Toe board">
+  <img src="https://github.com/devdii/tic-tac-toe-game/raw/main/tic_tac_toe.svg?t=TIMESTAMP" alt="Tic-Tac-Toe board">
 </p>
 
 **Current Player**: ![Player](https://img.shields.io/badge/player-X-yellow)
 
+## Choose Difficulty
+- [🟢 Easy Mode](https://github.com/devdii/tic-tac-toe-game/issues/new?title=game%7Cdifficulty%7Ceasy&body=Just+click+%27Submit+new+issue%27.) 
+- [🟡 Medium Mode](https://github.com/devdii/tic-tac-toe-game/issues/new?title=game%7Cdifficulty%7Cmedium&body=Just+click+%27Submit+new+issue%27.) 
+- [🔴 Hard Mode](https://github.com/devdii/tic-tac-toe-game/issues/new?title=game%7Cdifficulty%7Chard&body=Just+click+%27Submit+new+issue%27.)
+
+## Make Your Move
 [1️⃣ Top-Left](https://github.com/devdii/tic-tac-toe-game/issues/new?title=game%7Cmove%7C0&body=Just+click+%27Submit+new+issue%27.) | 
 [2️⃣ Top-Middle](https://github.com/devdii/tic-tac-toe-game/issues/new?title=game%7Cmove%7C1&body=Just+click+%27Submit+new+issue%27.) | 
 [3️⃣ Top-Right](https://github.com/devdii/tic-tac-toe-game/issues/new?title=game%7Cmove%7C2&body=Just+click+%27Submit+new+issue%27.)
@@ -23,3 +29,11 @@ Play Tic-Tac-Toe against GitHub! Current board:
 
 [🔄 Reset Game](https://github.com/devdii/tic-tac-toe-game/issues/new?title=game%7Creset&body=Just+click+%27Submit+new+issue%27.)
 <!-- game ends here -->
+
+## Features
+- 🧠 Smart AI with three difficulty levels
+- ✨ Animated moves and winning lines
+- 🎨 Beautiful UI with hover effects
+- 🏆 Visual winning line indicator
+- 🔄 Quick response time
+- 📊 Game state persistence
