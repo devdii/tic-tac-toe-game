@@ -4,7 +4,7 @@ Play Tic-Tac-Toe against GitHub! Current board:
 
 <!-- game starts here -->
 <p align="center">
-  <img src="https://github.com/devdii/tic-tac-toe-game/raw/main/tic_tac_toe.svg?t=TIMESTAMP" alt="Tic-Tac-Toe board">
+  <img src="https://github.com/devdii/tic-tac-toe-game/raw/main/tic_tac_toe.svg?t=1745689044TIMESTAMP" alt="Tic-Tac-Toe board">
 </p>
 
 **Current Player**: ![Player](https://img.shields.io/badge/player-X-yellow)
