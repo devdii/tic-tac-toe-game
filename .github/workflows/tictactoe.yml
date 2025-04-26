@@ -25,14 +25,16 @@ jobs:
           # Close the issue immediately for better UX
           gh issue close "${{ github.event.issue.number }}" --repo "$GITHUB_REPOSITORY" &
           
-          # Extract action and position in one go
-          IFS='|' read -r _ ACTION POSITION <<< "${{ github.event.issue.title }}"
+          # Extract action and parameter in one go
+          IFS='|' read -r _ ACTION PARAM <<< "${{ github.event.issue.title }}"
           
-          # Process move quickly
+          # Process command quickly
           if [ "$ACTION" == "move" ]; then
-            python tictactoe.py move "$POSITION"
+            python tictactoe.py move "$PARAM"
           elif [ "$ACTION" == "reset" ]; then
             python tictactoe.py reset
+          elif [ "$ACTION" == "difficulty" ]; then
+            python tictactoe.py difficulty "$PARAM"
           fi
           
           # Update README with timestamp for cache busting
