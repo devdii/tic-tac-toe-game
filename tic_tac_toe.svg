@@ -7,8 +7,13 @@
         <line x1="0" y1="100" x2="300" y2="100" stroke="black" stroke-width="2"/>
         <line x1="0" y1="200" x2="300" y2="200" stroke="black" stroke-width="2"/>
     
+            <circle cx="50" cy="50" r="30" stroke="blue" stroke-width="4" fill="none"/>
+            
             <line x1="120" y1="20" x2="180" y2="80" stroke="red" stroke-width="4"/>
             <line x1="180" y1="20" x2="120" y2="80" stroke="red" stroke-width="4"/>
+            
+            <line x1="220" y1="20" x2="280" y2="80" stroke="red" stroke-width="4"/>
+            <line x1="280" y1="20" x2="220" y2="80" stroke="red" stroke-width="4"/>
             
             <line x1="20" y1="120" x2="80" y2="180" stroke="red" stroke-width="4"/>
             <line x1="80" y1="120" x2="20" y2="180" stroke="red" stroke-width="4"/>
